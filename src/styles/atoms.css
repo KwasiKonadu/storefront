@@ -1,0 +1,28 @@
+/* ---- Buttons / forms ---- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 22px;border-radius:10px;background:var(--pine);color:#fff;font-weight:600;font-size:14px;border:1px solid var(--pine);transition:background .2s,transform .15s,border-color .2s;white-space:nowrap}
+.btn:hover{background:var(--pine-2);border-color:var(--pine-2)}
+.btn:active{transform:translateY(1px)}
+.btn:disabled{opacity:.55;cursor:not-allowed;transform:none}
+.btn-o{background:transparent;color:var(--ink);border:1px solid var(--line-2)}
+.btn-o:hover{background:var(--surface);border-color:var(--ink)}
+.btn-cream{background:var(--cream);color:var(--ink);border-color:var(--cream)}
+.btn-cream:hover{background:#fff;border-color:#fff}
+.btn-sm{padding:8px 14px;font-size:13px;border-radius:8px}
+.btn-lg{padding:15px 28px;font-size:15px}
+.btn-danger{background:transparent;border-color:#E0C7BC;color:var(--clay)}
+.btn-danger:hover{background:var(--clay-tint);border-color:var(--clay)}
+.link{color:var(--pine);font-weight:600;border-bottom:1px solid transparent}
+.link:hover{border-color:var(--pine)}
+.field{margin-bottom:16px}
+.field label{display:block;font-size:13px;font-weight:600;margin-bottom:6px}
+.field label .opt{color:var(--faint);font-weight:400}
+.input,textarea.input,select.input{width:100%;padding:11px 13px;border:1px solid var(--line-2);border-radius:var(--r-s);background:var(--surface);transition:border-color .2s,box-shadow .2s}
+.input:focus{outline:none;border-color:var(--pine);box-shadow:0 0 0 3px rgba(30,77,58,.12)}
+.input[aria-invalid="true"]{border-color:var(--clay)}
+textarea.input{resize:vertical;min-height:96px}
+.err{color:var(--clay);font-size:12.5px;margin-top:5px;display:none}
+.err.show{display:block}
+.form-note{font-size:12.5px;color:var(--muted)}
+.checkline{display:flex;gap:10px;align-items:flex-start;font-size:14px;cursor:pointer}
+.checkline input{margin-top:3px;accent-color:var(--pine);width:16px;height:16px}
+.hp-field{position:absolute;left:-5000px;top:0;height:0;overflow:hidden}

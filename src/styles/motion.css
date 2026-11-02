@@ -1,0 +1,83 @@
+/* ---- Motion: scroll reveal, header scroll state, button / control hover effects ---- */
+
+/* Scroll reveal (classes toggled by useReveal) */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .8s cubic-bezier(.2,.7,.2,1);transition-delay:var(--reveal-delay,0ms)}
+.reveal.in{opacity:1;transform:none}
+.grid-p>.reveal:nth-child(4n+2),.hscroll>.reveal:nth-child(4n+2),.benefits>.reveal:nth-child(4n+2){--reveal-delay:80ms}
+.grid-p>.reveal:nth-child(4n+3),.hscroll>.reveal:nth-child(4n+3),.benefits>.reveal:nth-child(4n+3){--reveal-delay:160ms}
+.grid-p>.reveal:nth-child(4n+4),.hscroll>.reveal:nth-child(4n+4),.benefits>.reveal:nth-child(4n+4){--reveal-delay:240ms}
+.cat-mosaic>.reveal:nth-child(2){--reveal-delay:80ms}.cat-mosaic>.reveal:nth-child(3){--reveal-delay:140ms}
+.cat-mosaic>.reveal:nth-child(4){--reveal-delay:200ms}.cat-mosaic>.reveal:nth-child(5){--reveal-delay:260ms}.cat-mosaic>.reveal:nth-child(6){--reveal-delay:320ms}
+
+/* Header reacts to scrolling */
+.site-header{transition:box-shadow .3s ease,background .3s ease}
+.header-in{transition:height .3s ease}
+.site-header.scrolled{box-shadow:0 8px 26px rgba(32,36,31,.09)}
+.site-header.scrolled .header-in{height:58px}
+
+/* Hero: gentle floating of the secondary image and card */
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+.hv-side{animation:float 7s ease-in-out infinite}
+.hv-card{animation:float 8s ease-in-out -3s infinite}
+
+/* Buttons */
+.btn{position:relative;overflow:hidden;transition:background .2s,border-color .2s,color .2s,box-shadow .25s,transform .25s cubic-bezier(.2,.7,.2,1)}
+.btn:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 10px 20px rgba(30,77,58,.24)}
+.btn-o:hover:not(:disabled),.btn-cream:hover:not(:disabled){box-shadow:0 8px 18px rgba(32,36,31,.12)}
+.btn:active:not(:disabled){transform:translateY(0) scale(.97);box-shadow:none;transition-duration:.08s}
+.btn::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(105deg,transparent 30%,rgba(255,255,255,.3) 50%,transparent 70%);transform:translateX(-130%)}
+.btn:hover:not(:disabled)::after{transform:translateX(130%);transition:transform .75s ease}
+.btn-o::after,.btn-cream::after{display:none}
+[data-icon="arrR"]{transition:transform .25s cubic-bezier(.2,.7,.2,1)}
+.btn:hover [data-icon="arrR"],.link:hover [data-icon="arrR"],.go:hover [data-icon="arrR"],.hv-card:hover [data-icon="arrR"]{transform:translateX(5px)}
+[data-icon="refresh"]{transition:transform .5s ease}
+.btn:hover [data-icon="refresh"]{transform:rotate(180deg)}
+[data-icon="plus"],[data-icon="trash"]{transition:transform .2s}
+.btn:hover [data-icon="plus"]{transform:rotate(90deg)}
+
+/* Icon buttons, chips and small controls */
+.hbtn{transition:background .15s,transform .2s cubic-bezier(.2,.7,.2,1)}
+.hbtn:hover{transform:scale(1.1)}
+.hbtn:active{transform:scale(.92)}
+.qa-btn{transition:background .15s,color .15s,border-color .15s,transform .2s,box-shadow .2s}
+.qa-btn:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 8px 16px rgba(30,77,58,.2)}
+.qa-btn:active:not(:disabled){transform:scale(.97)}
+.wish-b:active{transform:scale(.85)}
+.wish-b.on .ic-s{animation:heartpop .4s cubic-bezier(.3,1.6,.5,1)}
+@keyframes heartpop{0%{transform:scale(.6)}60%{transform:scale(1.35)}100%{transform:scale(1)}}
+.v-opt{transition:background .15s,color .15s,border-color .15s,transform .2s}
+.v-opt:hover{transform:translateY(-2px)}
+.v-opt:active{transform:scale(.95)}
+.pager button{transition:background .15s,color .15s,border-color .15s,transform .2s}
+.pager button:hover:not(:disabled){transform:translateY(-2px);border-color:var(--ink)}
+.qty button{transition:background .15s,color .15s,transform .15s}
+.qty button:active:not(:disabled){transform:scale(.85)}
+.cat-tile{transition:box-shadow .3s,transform .3s}
+.cat-tile:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+.f-list a,.main-nav a,.acct-nav a,.mm-nav a{transition:background .15s,color .15s,padding .2s}
+.f-list a:hover{padding-left:14px}
+.order-card{transition:box-shadow .25s,transform .25s}
+.order-card:hover{box-shadow:var(--shadow-s);transform:translateY(-2px)}
+.method-card,.addr-opt{transition:all .2s}
+.method-card:hover{transform:translateY(-2px)}
+
+@media (prefers-reduced-motion:reduce){
+  .reveal{opacity:1;transform:none;transition:none}
+  .hv-side,.hv-card,.wish-b.on .ic-s{animation:none}
+  .btn,.btn:hover:not(:disabled),.hbtn:hover,.qa-btn:hover:not(:disabled),.cat-tile:hover,.order-card:hover{transform:none}
+  .btn::after{display:none}
+}
+
+/* product of the week: slide in from the sides, gentle zoom on hover */
+.potw-from-left.reveal{transform:translateX(-36px)}
+.potw-from-right.reveal{transform:translateX(36px)}
+.potw-from-left.reveal.in,.potw-from-right.reveal.in{transform:none}
+
+/* hero parallax: layers drift at different speeds as the page scrolls (uses `translate`, so it composes with the float animation) */
+.hero-visual.poster .hv-main{translate:0 calc(var(--sy,0) * 0.12px)}
+.hero-visual.poster .hv-side{translate:0 calc(var(--sy,0) * -0.12px)}
+.hero-visual.poster .hv-card{translate:0 calc(var(--sy,0) * -0.22px)}
+@media (prefers-reduced-motion:reduce){.hero-visual.poster .hv-main,.hero-visual.poster .hv-side,.hero-visual.poster .hv-card{translate:none}}
+
+.potw:hover .potw-photo img{transform:scale(1.04) rotate(-1.5deg)}
+.potw-photo img{transition:transform .6s ease}

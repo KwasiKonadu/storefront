@@ -1,4 +1,4 @@
-# Marlow & Pine — storefront
+# Sales-Point — storefront
 
 Next.js (App Router) + TypeScript, structured with atomic design.
 
@@ -7,7 +7,7 @@ npm run dev        # http://localhost:3001 (SalesPoint uses 3000)
 npm run build && npm start
 npm run typecheck
 ```
-Demo login: `demo@marlowpine.com` / `Demo1234!` (data lives in browser localStorage).
+Demo login: `demo@storefront.com` / `Demo1234!` (data lives in browser localStorage).
 
 ## Structure
 ```

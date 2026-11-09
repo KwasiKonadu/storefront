@@ -4,14 +4,16 @@ import { AppProviders, SiteLayout } from '@/components/templates';
 import '@/styles/globals.css';
 
 export async function generateMetadata(): Promise<Metadata> {
-  let name = '';
+  let store: { name?: string; tagline?: string; about?: string } = {};
   try {
     const base = process.env.SALESPOINT_URL?.replace(/\/$/, '');
-    if (base) name = (await (await fetch(`${base}/api/public/catalog`, { next: { revalidate: 60 } })).json()).store?.name ?? '';
+    if (base) store = (await (await fetch(`${base}/api/public/catalog`, { next: { revalidate: 60 } })).json()).store ?? {};
   } catch { /* fall back to a plain title */ }
+  const name = store.name?.trim() ?? '';
+  const tagline = store.tagline?.trim() ?? '';
   return {
-    title: name ? `${name} — Home & Living` : 'Home & Living',
-    description: `${name || 'Our store'} — kitchen, table and home objects made from honest materials. Browse, order, and reorder with ease.`,
+    title: name ? (tagline ? `${name} — ${tagline}` : name) : 'Online store',
+    description: store.about?.trim() || tagline || (name ? `Shop ${name} online — browse, order and collect in store.` : 'Browse, order and collect in store.'),
   };
 }
 
